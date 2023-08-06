@@ -4,7 +4,7 @@ const productSchema = mongoose.Schema({
     name: { type: String, required: [true, "please enter product name"], trim:true },
     description: { type: String, required: [true, "please enter product description"] },
     price: { type: Number, required: [true, "please enter product price"], maxLength: [8, "price cannot exceed 8 character"] },
-    rating: { type: Number, default: 0 },
+    ratings: { type: Number, default: 0 },
     images:[
         {            
                 public_id: {
@@ -30,6 +30,11 @@ const productSchema = mongoose.Schema({
     },
     reviews:[
         {
+            user:{
+                type:mongoose.Schema.ObjectId,
+                ref:"user",
+                required:true,
+            },
             name:{
                 type:String,
                 required:true
